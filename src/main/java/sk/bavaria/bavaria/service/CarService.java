@@ -2,6 +2,7 @@ package sk.bavaria.bavaria.service;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sk.bavaria.bavaria.model.Car;
@@ -20,6 +21,7 @@ public class CarService {
     private CarReporitory carReporitory;
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public Long create(@RequestParam(required = true) String brand, @RequestParam MultipartFile photo) throws Exception {
         Car car = new Car();
         car.setBrand(brand);
